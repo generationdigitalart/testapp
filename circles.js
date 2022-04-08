@@ -14,11 +14,8 @@ const generationMetadata = {
 // SEEDS FOR OUTPUT
 const seeds = []
 
-//create random circles inside other circles
-//
-
 var circles = [{x:0,y:0,r:DIM/2 - 50*M}]
-var step = 0.03
+var step = 0.05
   
 function setup() {
   colorMode(HSB,100);
@@ -36,7 +33,7 @@ function setup() {
   }
   // noLoop();
 }
-var nn = 0
+var nn = 1
 
 function draw() {
   clear();
@@ -49,8 +46,8 @@ function draw() {
     // update circle position within the previous circle
     // jx = randomGaussian(0,step)
     // jy = randomGaussian(0,step)
-    jx = map(noise(circles[c].x*step, circles[c].y*step, nn*step),0,1,-1,1)
-    jy = map(noise(circles[c].y*step, circles[c].x*step, nn*step),0,1,-1,1)
+    jx = map(noise(circles[c].x*step, nn*step),0,1,-1,1)
+    jy = map(noise(circles[c].y*step, nn*step),0,1,-1,1)
     dist = (circles[c].x + jx - pp.x)**2 + (circles[c].y + jy - pp.y)**2
     if(pp.r > (sqrt(dist)+circles[c].r)){      
       // move all subsequent circles
@@ -63,7 +60,7 @@ function draw() {
     nn ++
     
     stroke(map(cc.x,0,DIM,50,100),30,80);
-    for (let a = 0; a < TWO_PI; a += 0.1){
+    for (let a = 0; a < TWO_PI; a += 0.05){
 
       x2 = cos(a)*cc.r + cc.x
       y2 = sin(a)*cc.r + cc.y
