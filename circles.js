@@ -23,7 +23,6 @@ var step = 0.03
 function setup() {
   colorMode(HSB,100);
   createCanvas(WIDTH, HEIGHT);
-  background(10,3,98);
   noFill();
   var pp = circles[0]
   
@@ -41,14 +40,15 @@ var nn = 0
 
 function draw() {
   clear();
+  background(10,3,98);
   translate(width/2, height/2);
   stroke(0,10,70)
   ellipse(circles[0].x, circles[0].y, circles[0].r*2)    
   for (let c = 1; c < circles.length; c++){
     pp = circles[c-1]
     // update circle position within the previous circle
-    jx = randomGaussian(0,step)
-    jy = randomGaussian(0,step)
+    // jx = randomGaussian(0,step)
+    // jy = randomGaussian(0,step)
     jx = map(noise(circles[c].x*step, circles[c].y*step, nn*step),0,1,-1,1)
     jy = map(noise(circles[c].y*step, circles[c].x*step, nn*step),0,1,-1,1)
     dist = (circles[c].x + jx - pp.x)**2 + (circles[c].y + jy - pp.y)**2
